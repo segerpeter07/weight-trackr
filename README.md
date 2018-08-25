@@ -1,30 +1,20 @@
-# node-js-template
+# Weight-trackr
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
-
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
-
-## Running Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone git@github.com:jomaoppa/node-js-template.git # or clone your own fork
-$ cd node-js-template
-$ npm install
-$ npm start
+## Building and Running the App
+### Installs
+Make sure you have all the installs by installing both the backend and front end requirements.
 ```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
+/$ npm install
+/frontend$ npm install
 ```
-$ heroku create
-$ git push heroku master
-$ heroku open
+### Building
+From the root directory, start the backend server. It uses nodemon, so it will restart the app whenever changes are made.
 ```
-or
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
+/$ npm run start
+```
+From the frontend directory, the `bundle.js` is built using webpack. In test mode, the watch flag is set, so the bundle will recompile when changes are made.
+```
+/frontend$ npm run watch
+```
+### Using
+Once the frontend has been made and the backend is running, navigate to `localhost:3000` to access the app.
