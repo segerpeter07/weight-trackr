@@ -90,10 +90,13 @@ export default class SignupForm extends React.Component {
                 </Alert>;
         }
 
+<<<<<<< HEAD
         if(this.state.showSubmitButton) {
             submitButton = <Button>Signup</Button>;
         }
 
+=======
+>>>>>>> 0839a35675e3143df7414d2630f3b028042dbbd6
         return (
           <div>
             <Container>
@@ -101,7 +104,11 @@ export default class SignupForm extends React.Component {
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
                         <h1>Signup</h1>
                         <p>Fill out the form and we'll hook you up with an account.</p>
+<<<<<<< HEAD
                         <Form onSubmit={this.submitForm}>
+=======
+                        <Form>
+>>>>>>> 0839a35675e3143df7414d2630f3b028042dbbd6
                             <FormGroup>
                                 <Label for="first_name">First Name</Label>
                                 <Input type="name" name="name" id="first_name" onChange={this.onActive}/>
@@ -119,7 +126,11 @@ export default class SignupForm extends React.Component {
                                 <Input type="password" name="password" id="password" onChange={this.passwordCheck}/>
                             </FormGroup>
                             {PasswordRequirements}
+<<<<<<< HEAD
                             {submitButton}
+=======
+                            <Button>Signup</Button>
+>>>>>>> 0839a35675e3143df7414d2630f3b028042dbbd6
                         </Form>
                     </Col>
                 </Row>
