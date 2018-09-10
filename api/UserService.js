@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+const uuidv4 = require('uuid/v4');
 
 function UserService(connection) {
     console.log('New UserService initialized');
@@ -7,14 +8,18 @@ function UserService(connection) {
 }
 
 UserService.prototype.createUser = function(data, cb) {
-//   var stmt = 'INSERT INTO paths (title, location_name, description, latitude, longitude) VALUES' +
-//     `("${data.title}", "${data.location_name}", "${data.description}", ${data.lat}, ${data.lng})`;
-//   this.con.query(stmt, function(err, result) {
-//     if (err) cb(err);
-//     cb(result);
-//   });
+    this.uuid = uuidv4();
+    this.profilePic = "";
+    console.log(data);
+
+    var stmt = 'INSERT INTO weight_tracker_db (uuid, firstName, lastName, profilePic, email, password) VALUES' +
+        `("${this.uuid}", "${data.firstName}", "${data.lastName}", ${this.profilePic}, ${data.email}, ${data.password})`;
+    this.con.query(stmt, function(err, result) {
+        if (err) cb(err);
+        cb(result);
+    });
     console.log('new user created');
-    console.log(this.con);
+    // console.log(this.con);
     cb();
 }
 

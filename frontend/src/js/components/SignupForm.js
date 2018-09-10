@@ -62,8 +62,8 @@ export default class SignupForm extends React.Component {
         request
             .post('/api/users/create')
             .send({
-                firstname: event.target[0].value,
-                lastname: event.target[1].value,
+                firstName: event.target[0].value,
+                lastName: event.target[1].value,
                 email: event.target[2].value,
                 password: event.target[3].value
             })

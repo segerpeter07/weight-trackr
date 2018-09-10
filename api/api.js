@@ -17,17 +17,19 @@ var WorkoutService = require('./WorkoutService');
 // })
 
 /* ----- Establish DB Connection ----- */
-// this.con = mysql.createConnection({
-//     port: '3306',
-//     host: 'localhost',
-//     user: 'strolle_app',
-//     password: 'walk',
-//     database: 'strolle_test'
-// });
-this.con = {
-    port: 'TEST',
-    host: 'TEST'
-}
+this.con = mysql.createConnection({
+    port: '3306',
+    host: 'localhost',
+    user: 'weight_trackr',
+    password: 'lift',
+    database: 'weight_tracker_db'
+});
+
+this.con.connect();
+// this.con = {
+//     port: 'TEST',
+//     host: 'TEST'
+// }
 
 var userService = new UserService(this.con);
 var ExerciseService = new ExerciseService(this.con);
@@ -52,7 +54,7 @@ router.route('/users/create').post(function(req, res) {
     console.log(req.body);
     userService.createUser(req.body, function(err) {
         if(err) {
-            return res.sendStatus(402);
+            return null;
         }
         return res.json();
     });
