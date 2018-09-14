@@ -68,10 +68,10 @@ export default class SignupForm extends React.Component {
                 password: event.target[3].value
             })
             .then((res) => {
-                if(res) {
+                if(!res) {
                     console.log('Error creating new user');
                 }
-                console.log('FIX CALLBACK TO CREATE USER');
+                console.log(res);
             })
     }
     

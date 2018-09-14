@@ -51,12 +51,12 @@ router.route('/testPassword').post(function(req, res) {
 router.route('/users/create').post(function(req, res) {
     // create new account
     console.log('API reached')
-    console.log(req.body);
     userService.createUser(req.body, function(err) {
         if(err) {
-            return null;
+            return res.sendStatus(402);
         }
-        return res.json();
+        // console.log(res.json())
+        return res.sendStatus(202);
     });
 })
 

@@ -9,18 +9,19 @@ function UserService(connection) {
 
 UserService.prototype.createUser = function(data, cb) {
     this.uuid = uuidv4();
-    this.profilePic = "";
-    console.log(data);
+    this.profilePic = "NA";
 
-    var stmt = 'INSERT INTO weight_tracker_db (uuid, firstName, lastName, profilePic, email, password) VALUES' +
-        `("${this.uuid}", "${data.firstName}", "${data.lastName}", ${this.profilePic}, ${data.email}, ${data.password})`;
+    var stmt = 'INSERT INTO weight_tracker_db.users (uuid, firstName, lastName, profilePic, email, password) VALUES' +
+        `("${this.uuid}", "${data.firstName}", "${data.lastName}", "${this.profilePic}", "${data.email}", "${data.password}")`;
+
     this.con.query(stmt, function(err, result) {
-        if (err) cb(err);
-        cb(result);
+        if (err) {
+            return cb(err);
+        }
+        return cb(null);
     });
-    console.log('new user created');
     // console.log(this.con);
-    cb();
+    // cb();
 }
 
 UserService.prototype.updateUser = function(data, cb) {
