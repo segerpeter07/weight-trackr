@@ -8,17 +8,17 @@ function UserService(connection) {
 }
 
 UserService.prototype.createUser = function(data, cb) {
-    this.uuid = uuidv4();
+    uuid = uuidv4();
     this.profilePic = "NA";
 
     var stmt = 'INSERT INTO weight_tracker_db.users (uuid, firstName, lastName, profilePic, email, password) VALUES' +
-        `("${this.uuid}", "${data.firstName}", "${data.lastName}", "${this.profilePic}", "${data.email}", "${data.password}")`;
+        `("${uuid}", "${data.firstName}", "${data.lastName}", "${this.profilePic}", "${data.email}", "${data.password}")`;
 
     this.con.query(stmt, function(err, result) {
         if (err) {
-            return cb(err);
-        }
-        return cb(null);
+            return cb(null);
+        }      
+        return cb(uuid);
     });
     // console.log(this.con);
     // cb();

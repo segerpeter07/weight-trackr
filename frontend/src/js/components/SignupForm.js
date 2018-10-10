@@ -1,6 +1,7 @@
 import React from 'react';
 
 const request = require('superagent');
+var pbkdf2 = require('pbkdf2')
 
 import {
     Alert,
@@ -13,7 +14,9 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import { Link } from 'react-router';
+import { Link, Redirect, Route, Router, browserHistory } from 'react-router';
+import {salt} from './../../../../constants/hash'
+import {User} from './../containers/User';
 
 export default class SignupForm extends React.Component {
     constructor(props) {
@@ -22,6 +25,7 @@ export default class SignupForm extends React.Component {
         this.state = {
           showPasswordRequirements: false,
           showSubmitButton: true,
+          redirectRoute: null,
         };
     }
 
@@ -57,7 +61,10 @@ export default class SignupForm extends React.Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        console.log('Form Submitted');
+
+        let pw = event.target[3].value;
+        var derivedKey = pbkdf2.pbkdf2Sync(pw, salt, 1, 12, 'sha512').toString('hex')
+        console.log(derivedKey)
 
         request
             .post('/api/users/create')
@@ -65,19 +72,33 @@ export default class SignupForm extends React.Component {
                 firstName: event.target[0].value,
                 lastName: event.target[1].value,
                 email: event.target[2].value,
-                password: event.target[3].value
+                password: derivedKey
             })
             .then((res) => {
                 if(!res) {
                     console.log('Error creating new user');
                 }
-                console.log(res);
+                const route = "/users/" + res.body;
+                console.log(route);
+                this.setState({
+                    redirectRoute: route,
+                })
             })
     }
     
     render() {
         var PasswordRequirements;
         var submitButton;
+
+        if(this.state.redirectRoute != null) {
+            console.log("HERE")
+            return(
+                <Router history={browserHistory}>
+                    <Redirect from="/signup" to={this.state.redirectRoute}/>
+                    <Route path='/users/:userId' component={User}/>
+                </Router>
+            );
+        }
 
         if(this.state.showPasswordRequirements) {
             PasswordRequirements = <Alert color="success">

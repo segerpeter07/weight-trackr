@@ -6,6 +6,7 @@ import { Home } from './containers/Home'
 import { Login } from './containers/Login'
 import { Signup } from './containers/Signup'
 import { Profile } from './containers/Profile'
+import { User } from './containers/User'
 import 'bootstrap/dist/css/bootstrap.css';
 import './../css/Navigation.css';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/profile' component={Profile} />
+        <Route path='/users/:userId' component={User} />
     </Router>,
     document.getElementById('root')
 );

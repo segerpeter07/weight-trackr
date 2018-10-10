@@ -52,11 +52,10 @@ router.route('/users/create').post(function(req, res) {
     // create new account
     console.log('API reached')
     userService.createUser(req.body, function(err) {
-        if(err) {
-            return res.sendStatus(402);
+        if(err === null) {
+            return res.sendStatus(400);
         }
-        // console.log(res.json())
-        return res.sendStatus(202);
+        res.json(err);
     });
 })
 
