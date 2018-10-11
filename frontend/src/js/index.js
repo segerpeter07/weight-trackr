@@ -16,7 +16,7 @@ ReactDOM.render(
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/profile' component={Profile} />
-        <Route path='/users/:userId' component={User} />
+        <Route path='/users/:uuid' component={User} />
     </Router>,
     document.getElementById('root')
 );

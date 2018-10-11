@@ -42,8 +42,16 @@ UserService.prototype.deleteUser = function(data, cb) {
     // });
 }
 
-UserService.prototype.getUser = function(data, cb) {
+UserService.prototype.getUser = function(uuid, cb) {
     // return user info
+    var stmt = 'SELECT * FROM weight_tracker_db.users WHERE uuid =' + uuid;
+    this.con.query(stmt, function(err, result) {
+        console.log(result);
+        if (err) {
+            return cb(null);
+        }      
+        return cb(uuid);
+    });
 }
 
 module.exports = UserService;

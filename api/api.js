@@ -69,6 +69,13 @@ router.route('/users/delete/:userID').post(function(req, res) {
 
 router.route('/users/:userID').get(function(req, res) {
     // return user based off userID
+    console.log(req.params);
+    userService.getUser(req.params.uuid, function(err) {
+        if(err) {
+            return res.sendStatus(400);
+        }
+        res.json(err);
+    })
 })
 
 

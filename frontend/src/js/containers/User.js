@@ -12,8 +12,25 @@ import Footer from '../components/Footer';
 class User extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.params.userId)
-    this.state = {id: this.props.params.userId};
+    // console.log(this.props.params.uuid)
+    this.state = {
+        uuid: this.props.params.uuid,
+        name: null,
+    };
+
+    request
+            .get(`/api/users/${this.props.params.uuid}`)
+            .then((res) => {
+                if(!res) {
+                    console.log('Error creating new user');
+                }
+                const route = "/users/" + res.body;
+                console.log(route);
+                this.setState({
+                    redirectRoute: route,
+                })
+            })
+
   }
 
     render() {
@@ -23,8 +40,9 @@ class User extends Component {
                     <Header
                         loggedIn={true}
                     />
-                    <Cover />
-                    <h1>{this.state.id}</h1>
+                    <Cover
+                        name={this.state.id}
+                    />
                 </div>
                 <div>
                     <Footer />

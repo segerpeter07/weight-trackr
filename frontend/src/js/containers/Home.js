@@ -17,7 +17,9 @@ class Home extends Component {
                     <Header
                         loggedIn={false}
                     />
-                    <Cover />
+                    <Cover 
+                        name={null}
+                    />
                 </div>
                 <div>
                     <Footer />
